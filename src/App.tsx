@@ -1,47 +1,33 @@
 import './App.css'
-import { type ChangeEvent, useState } from 'react'
-import type { ProductType } from "./types/ProductType"
+import { MyCity } from './components/MyCity';
+import { Book } from './components/Book';
 
 function App() {
-  const [product, setProduct] = useState<ProductType>({
-    title: "Bread",
-    count: 0,
-    price: 35,
-    is_active: false
-  })
+    const cityData = {
+        city_name: 'Одеса',
+        country_name: 'Україна',
+        year: 1794
+    };
 
-  function changeTitle(e: ChangeEvent<HTMLInputElement>) {
-    setProduct({ ...product, title: e.target.value })
-  }
+    const bookData = {
+        title: 'Майстер і Маргарита',
+        name_and_surname: 'Михайло Булгаков',
+        janre: 'Роман-містика',
+        pages_count: 480,
+        reviews: [
+            'Блискучий роман, який змінює світогляд!',
+            'Одна з найкращих книг світової літератури.',
+            'Фантастичне поєднання реальності та містики.'
+        ]
+    };
 
-  function changePrice(e: ChangeEvent<HTMLInputElement>) {
-    setProduct({ ...product, price: +e.target.value })
-  }
-
-  function changeCount(e: ChangeEvent<HTMLInputElement>) {
-    setProduct({ ...product, count: +e.target.value })
-  }
-
-  function changeIsActive(e: ChangeEvent<HTMLInputElement>) {
-    setProduct({ ...product, is_active: e.target.checked })
-  }
-
-  return (
-      <>
-        <h3>Product</h3>
-        <p>
-          Title: {product.title} | Price: {product.price} | Count: {product.count} | Status: {product.is_active ? "Active" : "Non active"}
-        </p>
-        <hr />
-        Title: <input type="text" value={product.title} onChange={changeTitle} />
-        <br />
-        Price: <input type="number" value={product.price} onChange={changePrice} />
-        <br />
-        Count: <input type="number" value={product.count} onChange={changeCount} />
-        <br />
-        Active: <input type="checkbox" checked={product.is_active} onChange={changeIsActive} />
-      </>
-  )
+    return (
+        <div>
+            <MyCity city={cityData} />
+            <hr style={{ margin: '40px 0' }} />
+            <Book book={bookData} />
+        </div>
+    );
 }
 
-export default App
+export default App;
