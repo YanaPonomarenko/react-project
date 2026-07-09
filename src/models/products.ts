@@ -1,9 +1,9 @@
 import type {ProductType} from "../types/ProductType.ts";
 
-const products:ProductType[] = [
+const products:ProductType[]=[
     {
         id: 1,
-        title: "Ноутбук ASUS Vivobook",
+        title: "Ноутбук Lenovo IdeaPad",
         price: 24999,
         is_active: true,
         image: "laptop.png",
@@ -12,19 +12,19 @@ const products:ProductType[] = [
     },
     {
         id: 2,
-        title: "Смартфон IPhone 14 Pro",
+        title: "Смартфон Samsung Galaxy",
         price: 18999,
         is_active: true,
-        image: "iphone.png.jpg",
+        image: "phone.png",
         count: 8,
         id_category: 2,
     },
     {
         id: 3,
-        title: "Apple Watch",
+        title: "Smart Watch",
         price: 12999,
         is_active: false,
-        image: "apple watch s 10.jpg",
+        image: "watch.png",
         count: 3,
         id_category: 3,
     },

@@ -1,6 +1,7 @@
 import './App.css'
 import ProductsList from "./components/ProductsList.tsx";
 import CreateProduct from "./components/CreateProduct.tsx";
+//import CreateProduct from "./components/CreateProduct.tsx";
 
 function App() {
     return(
@@ -12,4 +13,3 @@ function App() {
 
 }
 export default App
-

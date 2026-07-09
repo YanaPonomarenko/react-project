@@ -1,8 +1,7 @@
 import type {ProductType} from "../types/ProductType.ts";
 
-
-const Product = (prop:{product:ProductType})=>{
-    const{id, title, image,is_active,id_category,count, price} = prop.product;
+const Product = (prop:{product:ProductType}) =>{
+    const {id,title,image,is_active,id_category,count,price}=prop.product;
     return (
         <div className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto bg-white border border-gray-200 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
             <img
@@ -25,7 +24,7 @@ const Product = (prop:{product:ProductType})=>{
                         }`}
                     >
         {is_active ? "Активний" : "Неактивний"}
-      </span>
+</span>
                 </div>
 
                 <div className="mt-4 space-y-2 text-sm text-gray-600">
@@ -46,9 +45,9 @@ const Product = (prop:{product:ProductType})=>{
                 </div>
 
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <span className="text-2xl sm:text-3xl font-bold text-blue-600">
+<span className="text-2xl sm:text-3xl font-bold text-blue-600">
         {price} ₴
-      </span>
+</span>
 
                     <button className="w-full sm:w-auto px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:scale-95 transition">
                         Купити
@@ -58,4 +57,4 @@ const Product = (prop:{product:ProductType})=>{
         </div>
     )
 }
-export default Product
+export default Product;

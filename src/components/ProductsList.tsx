@@ -1,4 +1,4 @@
-import products from "../models/product.ts"
+import products from "../models/products.ts"
 import Product from "./Product.tsx";
 //import {useState} from "react";
 const ProductsList = () => {
