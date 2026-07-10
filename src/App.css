@@ -2,17 +2,17 @@
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
+  color: #646cff;
+  background: #f1f1f1;
   border: 2px solid transparent;
   transition: border-color 0.3s;
   margin-bottom: 24px;
 
   &:hover {
-    border-color: var(--accent-border);
+    border-color: #535bf2;
   }
   &:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid #646cff;
     outline-offset: 2px;
   }
 }
@@ -43,7 +43,7 @@
     top: 34px;
     height: 28px;
     transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
+    scale(1.4);
   }
 
   .vite {
@@ -52,7 +52,7 @@
     height: 26px;
     width: auto;
     transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
+    scale(0.8);
   }
 }
 
@@ -72,7 +72,7 @@
 
 #next-steps {
   display: flex;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid #e2e8f0;
   text-align: left;
 
   & > div {
@@ -96,11 +96,11 @@
 }
 
 #docs {
-  border-right: 1px solid var(--border);
+  border-right: 1px solid #e2e8f0;
 
   @media (max-width: 1024px) {
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #e2e8f0;
   }
 }
 
@@ -116,10 +116,10 @@
   }
 
   a {
-    color: var(--text-h);
+    color: #1a202c;
     font-size: 16px;
     border-radius: 6px;
-    background: var(--social-bg);
+    background: #f7fafc;
     display: flex;
     padding: 6px 12px;
     align-items: center;
@@ -128,7 +128,7 @@
     transition: box-shadow 0.3s;
 
     &:hover {
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     .button-icon {
       height: 18px;
@@ -155,7 +155,7 @@
 
 #spacer {
   height: 88px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid #e2e8f0;
   @media (max-width: 1024px) {
     height: 48px;
   }
@@ -175,10 +175,10 @@
 
   &::before {
     left: 0;
-    border-left-color: var(--border);
+    border-left-color: #e2e8f0;
   }
   &::after {
     right: 0;
-    border-right-color: var(--border);
+    border-right-color: #e2e8f0;
   }
 }

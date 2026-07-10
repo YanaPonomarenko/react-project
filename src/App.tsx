@@ -1,17 +1,13 @@
-import './App.css'
-import ProductsList from "./components/ProductsList.tsx";
-import CreateProduct from "./components/CreateProduct.tsx";
-import productData from "./models/products.ts"
-import {useState} from "react";
+import ProductsList from "./components/ProductsList";
+import CreateProduct from "./components/CreateProduct";
 
 function App() {
-    const [products, setProducts] =useState(productData)
-    return(
+    return (
         <>
-            <ProductsList products ={products} />
-            <CreateProduct setProducts={setProducts} products={products}/>
+            <ProductsList />
+            <CreateProduct />
         </>
-    )
-
+    );
 }
-export default App
+
+export default App;
