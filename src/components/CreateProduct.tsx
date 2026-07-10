@@ -1,7 +1,40 @@
-const CreateProduct = ()=>{
+import type {ProductType} from "../types/ProductType.ts";
+import {type ChangeEvent, type SubmitEvent, useState} from "react";
+
+type CreateProductProps = {
+    products: ProductType[];
+    setProducts: (products: ProductType[]) => void;
+}
+const CreateProduct = ({products, setProducts}:CreateProductProps)=>{
+    const [title, setTitle] = useState<string>("");
+    const [price, setPrice] = useState<number>(0);
+    const [image, setImage] = useState<string>("");
+    const [count, setCount] = useState<number>(0);
+    const [is_active, setIsActive] = useState<boolean>(true);
+    const [id_category, setIdCategory] = useState<string|number>(0);
+    const handlerSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setProducts([...products as ProductType[],
+            {
+                id:Date.now().toString(),
+                title,
+                price,
+                image,
+                count,
+                is_active,
+                id_category,
+            }
+        ]);
+        setTitle("");
+        setPrice(0);
+        setImage("");
+        setCount(0);
+        setIdCategory(0);
+        setIsActive(false);
+    }
     return(
         <div className="min-h-screen flex justify-center items-center bg-gray-100">
-            <div className="flex flex-col w-1/2 bg-white p-8 rounded-xl shadow-lg space-y-4">
+            <form onSubmit={handlerSubmit} className="flex flex-col w-1/2 bg-white p-8 rounded-xl shadow-lg space-y-4">
                 <div >
                     <label className="block mb-1 text-sm font-medium">
                         Назва товару
@@ -9,8 +42,12 @@ const CreateProduct = ()=>{
                     <input
                         type="text"
                         name="title"
+                        value={title}
                         placeholder="Введіть назву"
                         className="w-full px-3 py-2 border rounded-lg"
+                        onChange={(e:ChangeEvent<HTMLInputElement>) => {
+                            setTitle(e.target.value)
+                        }}
                     />
                 </div>
 
@@ -23,7 +60,11 @@ const CreateProduct = ()=>{
                         type="number"
                         name="price"
                         placeholder="0"
-                        min="0"
+                        value={price}
+                        min={price}
+                        onChange={(e:ChangeEvent<HTMLInputElement>) => {
+                            setPrice(+e.target.value)
+                        }}
                         className="w-full px-3 py-2 border rounded-lg"
                     />
                 </div>
@@ -36,8 +77,11 @@ const CreateProduct = ()=>{
                     <input
                         type="text"
                         name="image"
-                        placeholder="https://..."
+                        value={image}
                         className="w-full px-3 py-2 border rounded-lg"
+                        onChange={(e:ChangeEvent<HTMLInputElement>) => {
+                            setImage(e.target.value)
+                        }}
                     />
                 </div>
 
@@ -50,8 +94,12 @@ const CreateProduct = ()=>{
                         type="number"
                         name="count"
                         placeholder="0"
+                        value={count}
                         min="0"
                         className="w-full px-3 py-2 border rounded-lg"
+                        onChange={(e:ChangeEvent<HTMLInputElement>) => {
+                            setCount(+e.target.value)
+                        }}
                     />
                 </div>
 
@@ -63,6 +111,12 @@ const CreateProduct = ()=>{
                     <select
                         name="id_category"
                         className="w-full px-3 py-2 border rounded-lg"
+                        value={id_category}
+                        onChange={
+                            (e: ChangeEvent<HTMLSelectElement>) => {
+                                setIdCategory(+e.target.value);
+                            }
+                        }
                     >
                         <option value="">Оберіть категорію</option>
                         <option value="1">Ноутбуки</option>
@@ -77,6 +131,10 @@ const CreateProduct = ()=>{
                         type="checkbox"
                         name="is_active"
                         id="is_active"
+                        checked={is_active}
+                        onChange={(e:ChangeEvent<HTMLInputElement>) => {
+                            setIsActive(e.target.checked)
+                        }}
                     />
                     <label htmlFor="is_active">
                         Активний товар
@@ -89,6 +147,6 @@ const CreateProduct = ()=>{
                 >
                     Створити товар
                 </button>
-            </div></div>)
+            </form></div>)
 }
 export default CreateProduct;
