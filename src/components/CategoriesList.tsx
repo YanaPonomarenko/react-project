@@ -9,7 +9,7 @@ type CategoryType = {
 }
 
 const CategoriesList = ()=>{
-    const URL = "https://aa6a-37-52-79-159.ngrok-free.app/api/v1/category";
+    const URL = "http://localhost:3000/categories";
     const [categories, setCategories] = useState<CategoryType[]>([])
     useEffect(()=>{
         fetch(URL,{     headers: {         "ngrok-skip-browser-warning": "true"     } })
