@@ -1,6 +1,57 @@
 import './App.css';
 import ProductCard from "./components/ProductCard.tsx";
 import type { ProductCardType } from "./types/ProductCardType.ts";
+import { useState, useEffect, useCallback } from "react";
+
+type BasketProduct = {
+    id: number;
+    amount: number;
+};
+function BasketCounter() {
+    const [totalItems, setTotalItems] = useState<number>(() => {
+        const basketProducts: BasketProduct[] = JSON.parse(
+            localStorage.getItem('basketProducts') || '[]'
+        );
+        return basketProducts.reduce((sum: number, item: BasketProduct) => sum + item.amount, 0);
+    });
+
+    const updateCounter = useCallback(() => {
+        const basketProducts: BasketProduct[] = JSON.parse(
+            localStorage.getItem('basketProducts') || '[]'
+        );
+        const total = basketProducts.reduce((sum: number, item: BasketProduct) => sum + item.amount, 0);
+        setTotalItems(total);
+    }, []);
+
+    useEffect(() => {
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key === 'basketProducts') {
+                updateCounter();
+            }
+        };
+
+
+        const handleBasketUpdate = () => {
+            updateCounter();
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('basketUpdated', handleBasketUpdate);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener('basketUpdated', handleBasketUpdate);
+        };
+    }, [updateCounter]);
+
+    if (totalItems === 0) return null;
+
+    return (
+        <div className="fixed top-4 right-4 bg-red-500 text-white rounded-full h-8 w-8 flex items-center justify-center font-bold text-sm shadow-lg z-50 hover:scale-110 transition-transform">
+            {totalItems}
+        </div>
+    );
+}
 
 function App() {
     const products: ProductCardType[] = [
@@ -22,14 +73,26 @@ function App() {
             rating: 4.8,
             reviewsNumber: 340,
         },
+        {
+            id: 3,
+            title: "Навушники JBL Tune 500",
+            image: "https://images.ctfassets.net/2y8j7g33j6ql/2ILPq60OISQjypQCTjiBt6/87aa3a63c17e120601e4f905fec9414a/JBL_TUNE_500BT_ProductImage_Folded_Hero.png",
+            price: 1800,
+            discountPercent: 15,
+            rating: 4.5,
+            reviewsNumber: 89,
+        },
     ];
 
     return (
-        <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-            ))}
-        </div>
+        <>
+            <BasketCounter />
+            <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                {products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                ))}
+            </div>
+        </>
     );
 }
 

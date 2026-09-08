@@ -5,7 +5,7 @@ import basketImg from "../assets/basket.png";
 import commentImg from "../assets/comment.png";
 import redHeart from "../assets/red-heart.png";
 import heart from "../assets/heart.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ProductCard(props: { product: ProductCardType }) {
     const basket: BasketButtonType = {
@@ -18,6 +18,18 @@ function ProductCard(props: { product: ProductCardType }) {
         );
         return selected.includes(props.product.id);
     });
+
+    useEffect(() => {
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key === 'selected') {
+                const selected: number[] = JSON.parse(e.newValue || '[]');
+                setLiked(selected.includes(props.product.id));
+            }
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        return () => window.removeEventListener('storage', handleStorageChange);
+    }, [props.product.id]);
 
     function likeProduct() {
         const selected: number[] = JSON.parse(
@@ -103,7 +115,7 @@ function ProductCard(props: { product: ProductCardType }) {
                                 {props.product.price} ₴
                             </span>
                             <span className="text-lg font-bold text-red-500">
-                                {discountedPrice} ₴
+                                {discountedPrice.toFixed(2)} ₴
                             </span>
                             <span className="text-xs text-green-600">
                                 -{props.product.discountPercent}%
