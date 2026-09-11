@@ -1,6 +1,7 @@
 import './App.css';
 import ProductsList from "./components/ProductsList";
 import SearchForm from "./components/SearchForm";
+import Category from "./components/Category";
 import { ProductsProvider } from "./context/ProductsProvider";
 import { useState, useEffect } from "react";
 
@@ -52,6 +53,9 @@ function App() {
                 <h1 className="text-3xl font-bold text-center py-6">Магазин</h1>
                 <SearchForm />
                 <ProductsList />
+
+                {/* 🆕 Категорії */}
+                <Category />
             </div>
         </ProductsProvider>
     );
