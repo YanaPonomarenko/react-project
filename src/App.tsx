@@ -54,7 +54,7 @@ function App() {
                 <SearchForm />
                 <ProductsList />
 
-                {/* 🆕 Категорії */}
+
                 <Category />
             </div>
         </ProductsProvider>
